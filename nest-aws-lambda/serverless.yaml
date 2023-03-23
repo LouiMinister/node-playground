@@ -1,0 +1,42 @@
+#service: sample-project
+#
+#plugins:
+#  - serverless-jetpack
+#  - serverless-offline
+#provider:
+#  name: aws
+#  region: ap-northeast-2
+#  stage: dev
+#  runtime: nodejs16.x
+#
+#functions:
+#  apis:
+#    handler: src/lambda.handler
+#    #    The following are a few example events you can configure
+#    #    NOTE: Please make sure to change your handler code to work with those events
+#    #    Check the event documentation for details
+#    events:
+#      - httpApi:
+#          path: /{any+}
+#          method: any
+
+service: serverless-example
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: ap-northeast-2
+
+functions:
+  main:
+    handler: dist/lambda.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
