@@ -9,7 +9,8 @@
 - NestJS 컴포넌트의 LifeCycle을 Hooking 하고 싶을 때 사용한다.
 - 컴포넌트의 비동기 Init()을 처리할 때 사용한다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6e40656d-5dbf-42c8-8491-31a2108da08c/Untitled.png)
+![image](https://user-images.githubusercontent.com/33686751/229536481-dbf7c650-1281-4abc-9926-37bd5801e050.png)
+
 
 **initializing**, **running**, **terminationg** 세 단계로 분류한다.
 
@@ -208,18 +209,14 @@ export class Slave1Service // Also Slave2Service too
 
 ### 이렇게 짠 다음에 npm start를 하면 결과가 어떨까??
 
-- 생각해보고 결과를 보세용...!!
-    - 진짜 생각해봤죠?
-        - 진짜죠?
-            - 막누른거 아니죠?
+<img width="909" alt="스크린샷 2023-04-03 오후 10 36 03" src="https://user-images.githubusercontent.com/33686751/229535965-e23c5b60-ac3b-4a02-a2b8-ea089ac7f1ea.png">
 
-              ![스크린샷 2023-04-03 오후 10.36.03.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4c8ca8b3-a963-4f92-aa6d-20e4b97fc0b2/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-04-03_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.36.03.png)
 
-              ### 결론
+### 결론
 
-              Component간의 종속 관계는 호출 순서에 영향을 주지 않는다.
+Component간의 종속 관계는 호출 순서에 영향을 주지 않는다.
 
-              Module간의 종속 관계가 호출 순서를 결정한다.
+Module간의 종속 관계가 호출 순서를 결정한다.
 
 
 ## 2. Slave1Service의 onModuleInit을 Async func로 걸어 둘 때 호출순서는?
@@ -238,8 +235,8 @@ async onModuleInit(): Promise<any> {
 ```
 
 ### 결과
+<img width="901" alt="스크린샷 2023-04-03 오후 11 00 06" src="https://user-images.githubusercontent.com/33686751/229536225-2655984b-a347-40c2-8a0d-d56380dad666.png">
 
-![스크린샷 2023-04-03 오후 11.00.06.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4ab1f0dd-9b2b-41eb-b3ac-6b9fc7b02e2c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-04-03_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.00.06.png)
 
 시간이 걸리더라도 비동기 함수가 resolve 처리 된 이후에 다음 컴포넌트의 LifeCycle Hook이 실행된다. 즉 기다린다!
 
