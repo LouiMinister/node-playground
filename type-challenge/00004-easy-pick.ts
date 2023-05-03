@@ -1,11 +1,11 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from './test-utils';
+import type { Equal, Expect } from "./test-utils";
 
 type cases = [
-  Expect<Equal<Expected1, MyPick<Todo, 'title'>>>,
-  Expect<Equal<Expected2, MyPick<Todo, 'title' | 'completed'>>>,
+  Expect<Equal<Expected1, MyPick<Todo, "title">>>,
+  Expect<Equal<Expected2, MyPick<Todo, "title" | "completed">>>,
   // @ts-expect-error
-  MyPick<Todo, 'title' | 'completed' | 'invalid'>
+  MyPick<Todo, "title" | "completed" | "invalid">
 ];
 
 interface Todo {
@@ -26,4 +26,6 @@ interface Expected2 {
 // ============= Your Code Here =============
 
 // Pick 타입을 이용할 때 Generic과 extends를 활용함
-type MyPick<T, K extends keyof T> = Pick<T, K>;
+type MyPick<T, K extends keyof T> = {
+  [key in K]: T[key];
+};
